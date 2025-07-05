@@ -6,13 +6,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
-    private TodoRepositoryInterface todoRepository;
+    private final TodoRepositoryInterface todoRepository;
 
     public TodoService(TodoRepositoryInterface todoRepository){
         this.todoRepository = todoRepository;
+    }
+
+    public Optional<Todo> show(Long id){
+        return todoRepository.findById(id);
     }
 
     public List<Todo> list(){
@@ -28,7 +33,7 @@ public class TodoService {
     }
 
     public List<Todo> update(Todo todo){
-        todoRepository.save(todo);
+        Todo obj = todoRepository.save(todo);
         return list();
     }
 

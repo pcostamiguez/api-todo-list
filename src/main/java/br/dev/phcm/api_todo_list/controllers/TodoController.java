@@ -5,6 +5,7 @@ import br.dev.phcm.api_todo_list.services.TodoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/todos")
@@ -13,6 +14,11 @@ public class TodoController {
 
     public TodoController(TodoService todoService){
         this.todoService = todoService;
+    }
+
+    @GetMapping("{id}")
+    Optional<Todo> show(@PathVariable Long id) {
+        return todoService.show(id);
     }
 
     @GetMapping
