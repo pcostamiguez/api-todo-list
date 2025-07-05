@@ -1,6 +1,7 @@
 package br.dev.phcm.api_todo_list.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "todos")
@@ -8,7 +9,9 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "O nome não pode estar em branco.")
     private String nome;
+    @NotBlank(message = "A descrição não pode estar em branco.")
     private String descricao;
     private Boolean realizado;
     private Integer prioridade;
